@@ -85,10 +85,12 @@ if(empty($count)){
     <div class="col-lg-12">
 
     <h1 class="text-center">
-    <i class="fa fa-windows"></i> Bing Search
+    <i class="fa fa-windows"></i> Bing Image Search
     </h1>
 
     <br><br><br>
+
+    <p class="text-center">Please <a href="https://github.com/s0323861/image_search">report bugs and send feedback</a> on GitHub.</p>
 
     </div>
 
@@ -136,7 +138,7 @@ if(empty($count)){
   <footer>
   <div class="row">
     <div class="col-lg-12">
-    <p>Please <a href="https://github.com/s0323861/image_search">report bugs and send feedback</a> on GitHub. Developed by Akira Mukai 2015</p>
+    <p>Developed by Akira Mukai 2015</p>
     </div>
     <!-- /.col-lg-12 -->
   </div>

@@ -1,3 +1,17 @@
+<?php
+
+// get query and page
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // POST
+    $q = $_POST['query'];
+    $page = $_POST['page'];
+} else {
+    // GET
+    $q = $_GET['query'];
+    $page = $_GET['page'];
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +72,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
-    <a href="./" class="navbar-brand"><i class="fa fa-windows"></i> Bing Search</a>
+    <a href="./" class="navbar-brand"><i class="fa fa-windows"></i> Bing Image Search</a>
     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -66,11 +80,11 @@
     </button>
     </div>
     <div class="navbar-collapse collapse" id="navbar-main">
-    <form class="navbar-form navbar-left" role="search">
+    <form method="POST" action="search.php" class="navbar-form navbar-left" role="search" id="searchForm">
     <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search" value="<?php echo $_POST['query']; ?>">
+    <input type="text" name="query" class="form-control" id="searchfor" placeholder="Search" value="<?php echo $q; ?>">
     </div>
-    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> GO!</button>
+    <button type="button" class="btn btn-default" id="btn_go"><i class="fa fa-search"></i> GO!</button>
     </form>
     <ul class="nav navbar-nav navbar-right">
     <li><a href="#" id="btn_dl"><i class="fa fa-download"></i> Download</a></li>
@@ -84,9 +98,11 @@
 
   <form method="post" action="download.php" id="downloadForm">
 
-    <div class="row">
+    <div id="content">
 
-      <div class="article">
+      <div class="row">
+
+        <div class="article">
 
 <?php
 
@@ -99,7 +115,6 @@ $adult = $CONFIGS['Adult'];
 $rootUri = 'https://api.datamarket.azure.com/Bing/Search';
 
 // ページ番号の取得
-$page = $_POST['page'];
 if(empty($page)){
   $page = 1;
 }
@@ -107,13 +122,13 @@ if(empty($page)){
 // オフセットの設定
 $offset = ($page - 1) * 50;
 
-if ($_POST['query'])
+if ($q)
 {
   // Here is where you'll process the query. 
   // The rest of the code samples in this tutorial are inside this conditional block.
 
   // Encode the query and the single quotes that must surround it.
-  $query = urlencode("'{$_POST['query']}'");
+  $query = urlencode("'{$q}'");
 
   // Get the selected service operation (Web or Image).
   //$serviceOp = $_POST['service_op'];
@@ -246,18 +261,17 @@ function formatBytes($bytes, $precision = 2, array $units = null)
 
 ?>
 
-    </div>
-    <!-- /.article -->
+        </div><!-- /.article -->
 
-  </div>
+      </div><!-- /.row -->
 
-  <div class="row">
+      <div class="row">
+        <div class="navigation text-center">
+          <a class="btn btn-primary btn-sm" href="search.php?page=<?php echo $page+1; ?>&query=<?php echo urlencode($q); ?>"><span class="glyphicon glyphicon-refresh"></span> Read more</a>
+        </div>
+      </div>
 
-    <div class="navigation text-center">
-      <a class="btn btn-primary btn-sm" href="search.php?page=<?php echo $page+1; ?>&query=<?php echo urlencode($_POST['query']); ?>"><span class="glyphicon glyphicon-refresh"></span> Read more</a>
-    </div>
-
-  </div>
+    </div><!-- /.content -->
 
   </form>
 
@@ -309,6 +323,15 @@ $(function(){
       $('#downloadForm').submit();
     }else{
       alert("None of items are selected.");
+    }
+  });
+
+  $('#btn_go').click(function(){
+    var checkeditem = $('#searchfor').val();
+    if(checkeditem == "") {
+
+    }else{
+      $('#searchForm').submit();
     }
   });
 
