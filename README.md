@@ -1,10 +1,8 @@
-<<<<<<< HEAD
-## Image search & download
-=======
 ## PHP Bing Search API(Image)
->>>>>>> origin/master
 
 A simple PHP application for using the Bing Search API for new Azure Marketplace version.
+
+You can search  image files and download them collectively.
 
 Please file all bugs [in the issue tracker](https://github.com/s0323861/PHPBingSearchAPI_Image/issues).
 
