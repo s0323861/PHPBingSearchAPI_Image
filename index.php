@@ -102,12 +102,12 @@ if(empty($count)){
 
     <div class="col-xs-8 col-xs-offset-2">
 
-    <form method="POST" action="search.php">
+    <form method="POST" action="search.php" id="searchForm">
 
       <div class="input-group">
-        <input type="text" name="query" class="form-control" placeholder="Search for...">
+        <input type="text" name="query" id="searchfor" class="form-control" placeholder="Search for...">
         <span class="input-group-btn">
-          <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Go!</button>
+          <button type="button" class="btn btn-default" type="button" id="btn_go"><i class="fa fa-search"></i> Go!</button>
         </span>
       </div><!-- /input-group -->
 
@@ -149,6 +149,19 @@ if(empty($count)){
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
+<script>
+$(function(){
+  $('#btn_go').click(function(){
+    var checkeditem = $('#searchfor').val();
+    if(checkeditem == "") {
+
+    }else{
+      $('#searchForm').submit();
+    }
+  });
+
+});
+</script>
 
 </body>
 </html>
