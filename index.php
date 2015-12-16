@@ -113,6 +113,8 @@ if(empty($count)){
 
     </form>
 
+      <input type="hidden" name="trans_cnt" id="trans_cnt" value="<?php echo round($percentage); ?>">
+
     </div>
 
   </div>
@@ -155,6 +157,8 @@ $(function(){
     var checkeditem = $('#searchfor').val();
     if(checkeditem == "") {
 
+    }else if(transactioncount == 100) {
+      alert("Sorry! Transactions reached monthly limit.");
     }else{
       $('#searchForm').submit();
     }

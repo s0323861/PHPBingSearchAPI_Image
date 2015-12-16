@@ -199,6 +199,7 @@ EOM;
   // read the file
   $lines = file('./counter.csv', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
   $flg = 1;
+  $trans_cnt = 1;
   foreach ($lines as $line) {
     $thismonth = date('Ym');
 
@@ -208,13 +209,14 @@ EOM;
       $added = $line_array[1] + 1;
       $line = $thismonth . "," . $added;
       $flg = 0;
+      $trans_cnt = $added;
     }
 
     $modified[] = $line . "\n";
 
   }
   if($flg){
-    $modified[] = $thismonth . "," . "0" . "\n";
+    $modified[] = $thismonth . "," . "1" . "\n";
   }
 
   // overwrite the file
@@ -330,6 +332,8 @@ $(function(){
     var checkeditem = $('#searchfor').val();
     if(checkeditem == "") {
 
+    }else if(<?php echo $trans_cnt; ?> >= 5000) {
+      alert("Sorry! Transactions reached monthly limit.");
     }else{
       $('#searchForm').submit();
     }

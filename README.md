@@ -26,4 +26,4 @@ Please file all bugs [in the issue tracker](https://github.com/s0323861/PHPBingS
 
 ### Licence
 
-  - MIT
+  - Copyright 2015 Akira Mukai. Licensed under the MIT License
