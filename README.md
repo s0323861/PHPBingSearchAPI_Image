@@ -11,7 +11,19 @@ Please file all bugs [in the issue tracker](https://github.com/s0323861/PHPBingS
 
   - edit configs.php to match your environment
 
+  - upload all files to the web server
+
+
+### Features
+
+  - written in PHP
+
 
 ### Demo
 
   - http://tsukuba42195.top/imgsearch
+
+
+### Licence
+
+  - MIT
